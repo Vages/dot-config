@@ -84,6 +84,7 @@
           screensaver.askForPasswordDelay = 10;
           NSGlobalDomain.AppleShowAllFiles = true;
           NSGlobalDomain."com.apple.keyboard.fnState" = true;
+          NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = true;
         };
         security.pam.enableSudoTouchIdAuth = true;
       };
