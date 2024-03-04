@@ -18,7 +18,7 @@
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
-        environment.systemPackages = [ pkgs.vim pkgs.neovim ];
+        environment.systemPackages = with pkgs; [ vim neovim ];
 
         # formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt
 
