@@ -62,20 +62,23 @@
         ];
 
         # Enable Homebrew (requires you to install homebrew, too)
-        homebrew.enable = true;
-        homebrew.casks = [
-          "sublime-text"
-          "rectangle"
-          "flux"
-          "mullvad-browser"
-          "protonvpn"
-          "1password"
-          "omnifocus"
-          "slack"
-          "protonmail-bridge"
-          "signal"
-          "1password-cli" # Using pkgs._1password did not work
-        ];
+        homebrew = {
+          enable = true;
+          casks = [
+            "sublime-text"
+            "rectangle"
+            "flux"
+            "mullvad-browser"
+            "protonvpn"
+            "1password"
+            "omnifocus"
+            "slack"
+            "protonmail-bridge"
+            "signal"
+            "1password-cli" # Using pkgs._1password did not work
+          ];
+          onActivation.cleanup = "uninstall";
+        };
         system.defaults = {
           dock.autohide = true;
           dock.mru-spaces = false;
