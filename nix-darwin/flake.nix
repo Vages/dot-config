@@ -100,43 +100,50 @@
 
         # Declare the user that will be running `nix-darwin`.
         users.users.eirikvageskar = {
-            name = "eirikvageskar";
-            home = "/Users/eirikvageskar";
+          name = "eirikvageskar";
+          home = "/Users/eirikvageskar";
         };
       };
-      homeconfig = {pkgs, ...}: {
+      homeconfig = { pkgs, ... }: {
         # this is internal compatibility configuration 
         # for home-manager, don't change this!
         home.stateVersion = "23.05";
         # Let home-manager install and manage itself.
         programs.home-manager.enable = true;
 
-        home.packages = with pkgs; [];
+        home.packages = with pkgs; [ ];
 
         home.sessionVariables = {
-            EDITOR = "subl -w";
+          EDITOR = "subl -w";
         };
 
         programs.zsh = {
+          enable = true;
+          shellAliases = {
+            switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+          };
+          oh-my-zsh = {
             enable = true;
-            shellAliases = {
-                switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
-            };
+            plugins = [ "git" ];
+            theme = "robbyrussell";
+          };
         };
       };
-    in {
+    in
+    {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."Eirik-sin-MacBook-Pro" = nix-darwin.lib.darwinSystem { 
-        modules = [ 
+      darwinConfigurations."Eirik-sin-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        modules = [
           configuration
-          home-manager.darwinModules.home-manager  {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.verbose = true;
-                home-manager.users.eirikvageskar = homeconfig;
-          } 
-        ]; 
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.verbose = true;
+            home-manager.users.eirikvageskar = homeconfig;
+          }
+        ];
       };
 
       # Expose the package set, including overlays, for convenience.
