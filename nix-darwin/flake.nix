@@ -7,9 +7,13 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
     let
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
@@ -100,11 +104,40 @@
             home = "/Users/eirikvageskar";
         };
       };
+      homeconfig = {pkgs, ...}: {
+        # this is internal compatibility configuration 
+        # for home-manager, don't change this!
+        home.stateVersion = "23.05";
+        # Let home-manager install and manage itself.
+        programs.home-manager.enable = true;
+
+        home.packages = with pkgs; [];
+
+        home.sessionVariables = {
+            EDITOR = "subl -w";
+        };
+
+        programs.zsh = {
+            enable = true;
+            shellAliases = {
+                switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+            };
+        };
+      };
     in {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."Eirik-sin-MacBook-Pro" =
-        nix-darwin.lib.darwinSystem { modules = [ configuration ]; };
+      darwinConfigurations."Eirik-sin-MacBook-Pro" = nix-darwin.lib.darwinSystem { 
+        modules = [ 
+          configuration
+          home-manager.darwinModules.home-manager  {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.verbose = true;
+                home-manager.users.eirikvageskar = homeconfig;
+          } 
+        ]; 
+      };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Eirik-sin-MacBook-Pro".pkgs;
