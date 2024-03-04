@@ -74,6 +74,7 @@
           "slack"
           "protonmail-bridge"
           "signal"
+          "1password-cli" # Using pkgs._1password did not work
         ];
         system.defaults = {
           dock.autohide = true;
