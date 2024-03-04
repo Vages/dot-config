@@ -88,6 +88,12 @@
           NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = true;
         };
         security.pam.enableSudoTouchIdAuth = true;
+
+        # Declare the user that will be running `nix-darwin`.
+        users.users.eirikvageskar = {
+            name = "eirikvageskar";
+            home = "/Users/eirikvageskar";
+        };
       };
     in {
       # Build darwin flake using:
