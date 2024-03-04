@@ -111,7 +111,7 @@
         # Let home-manager install and manage itself.
         programs.home-manager.enable = true;
 
-        home.packages = with pkgs; [ ];
+        home.packages = with pkgs; [ nixpkgs-fmt ];
 
         home.sessionVariables = {
           EDITOR = "subl -w";
