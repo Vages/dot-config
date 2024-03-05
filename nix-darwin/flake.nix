@@ -91,6 +91,7 @@
               "com.apple.keyboard.fnState" = true;
               AppleInterfaceStyleSwitchesAutomatically = true;
               AppleShowAllFiles = true;
+              AppleShowScrollBars = "Always";
               NSAutomaticPeriodSubstitutionEnabled = false;
             };
           };
