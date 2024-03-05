@@ -128,6 +128,17 @@
             theme = "robbyrussell";
           };
         };
+
+        programs.git = {
+          enable = true;
+          userName = "Eirik Vågeskar";
+          userEmail = "eirik.vaageskar@aboveit.no";
+          ignores = [ ".DS_Store" ];
+          extraConfig = {
+            init.defaultBranch = "main";
+            push.autoSetupRemote = true;
+          };
+        };
       };
     in
     {
