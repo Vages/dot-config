@@ -92,6 +92,7 @@
           finder.FXPreferredViewStyle = "clmv";
           screencapture.location = "~/screenshots";
           screensaver.askForPasswordDelay = 10;
+          NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
           NSGlobalDomain.AppleShowAllFiles = true;
           NSGlobalDomain."com.apple.keyboard.fnState" = true;
           NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = true;
