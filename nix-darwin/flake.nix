@@ -84,6 +84,7 @@
               AppleShowAllExtensions = true;
               FXPreferredViewStyle = "clmv";
             };
+            menuExtraClock.IsAnalog = true;
             screencapture.location = "~/screenshots"; # Create directory to have an effect
             screensaver.askForPasswordDelay = 10;
             NSGlobalDomain = {
