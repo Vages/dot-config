@@ -20,53 +20,81 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [ vim neovim ];
 
-        # formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt
-
         # Auto upgrade nix package and the daemon service.
         services.nix-daemon.enable = true;
-        nix.package = pkgs.nix;
 
+        nix = {
+          package = pkgs.nix;
+          settings = {
+            # Necessary for using flakes on this system.
+            experimental-features = "nix-command flakes repl-flake";
+            bash-prompt-prefix = "(nix:$name)\\040";
+            extra-nix-path = "nixpkgs=flake:nixpkgs";
+          };
+          extraOptions = ''
+            extra-platforms = x86_64-darwin aarch64-darwin
+          '';
+        };
 
-        # allow uninstalling unfree packages
-        nixpkgs.config.allowUnfree = true;
-        nixpkgs.config.allowUnsupportedSystem = true;
+        nixpkgs = {
+          config = {
+            # allow uninstalling unfree packages
+            allowUnfree = true;
+            allowUnsupportedSystem = true;
+          };
 
-        # Necessary for using flakes on this system.
-        nix.settings.experimental-features = "nix-command flakes repl-flake";
-        nix.settings.bash-prompt-prefix = "(nix:$name)\\040";
-        nix.settings.extra-nix-path = "nixpkgs=flake:nixpkgs";
-        nix.extraOptions = ''
-          extra-platforms = x86_64-darwin aarch64-darwin
-        '';
-        # Create /etc/zshrc that loads the nix-darwin environment.
-        programs.zsh.enable = true; # default shell on catalina
-        # programs.fish.enable = true;
+          # The platform the configuration will be used on.
+          hostPlatform = "aarch64-darwin";
 
-        # Set Git commit hash for darwin-version.
-        system.configurationRevision = self.rev or self.dirtyRev or null;
+        };
 
-        # Used for backwards compatibility, please read the changelog before changing.
-        # $ darwin-rebuild changelog
-        system.stateVersion = 4;
+        # zsh must be enabled here as well as in the home manager
+        programs.zsh.enable = true;
 
-        # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
+        system = {
+          # Set Git commit hash for darwin-version.
+          configurationRevision = self.rev or self.dirtyRev or null;
 
-        # This is my try at getting the backspace to work
-        system.keyboard.enableKeyMapping = true;
-        # system.keyboard.remapCapsLockToControl = true;
-        system.keyboard.userKeyMapping = [
-          # Caps lock to backspace; keys taken from https://github.com/rossmacarthur/kb-remap/blob/8ad996a86f419a474d7d17e5bc56e55c207bf9dd/README.md#filtering-keyboards
-          {
-            HIDKeyboardModifierMappingSrc = 30064771129;
-            HIDKeyboardModifierMappingDst = 30064771114;
-          }
-          # Backspace to caps lock
-          {
-            HIDKeyboardModifierMappingSrc = 30064771114;
-            HIDKeyboardModifierMappingDst = 30064771129;
-          }
-        ];
+          # Used for backwards compatibility, please read the changelog before changing.
+          # $ darwin-rebuild changelog
+          stateVersion = 4;
+
+          keyboard = {
+            enableKeyMapping = true;
+            userKeyMapping = [
+              # Caps lock to backspace; keys taken from https://github.com/rossmacarthur/kb-remap/blob/8ad996a86f419a474d7d17e5bc56e55c207bf9dd/README.md#filtering-keyboards
+              {
+                HIDKeyboardModifierMappingSrc = 30064771129;
+                HIDKeyboardModifierMappingDst = 30064771114;
+              }
+              # Backspace to caps lock
+              {
+                HIDKeyboardModifierMappingSrc = 30064771114;
+                HIDKeyboardModifierMappingDst = 30064771129;
+              }
+            ];
+          };
+
+          defaults = {
+            dock = {
+              autohide = true;
+              mru-spaces = false;
+            };
+            finder = {
+              AppleShowAllExtensions = true;
+              FXPreferredViewStyle = "clmv";
+            };
+            screencapture.location = "~/screenshots"; # Create directory to have an effect
+            screensaver.askForPasswordDelay = 10;
+            NSGlobalDomain = {
+              "com.apple.keyboard.fnState" = true;
+              AppleInterfaceStyleSwitchesAutomatically = true;
+              AppleShowAllFiles = true;
+              NSAutomaticPeriodSubstitutionEnabled = false;
+            };
+          };
+        };
+
 
         # Enable Homebrew (requires you to install homebrew, too)
         homebrew = {
@@ -86,18 +114,6 @@
           ];
           onActivation.cleanup = "uninstall";
         };
-        system.defaults = {
-          dock.autohide = true;
-          dock.mru-spaces = false;
-          finder.AppleShowAllExtensions = true;
-          finder.FXPreferredViewStyle = "clmv";
-          screencapture.location = "~/screenshots";
-          screensaver.askForPasswordDelay = 10;
-          NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
-          NSGlobalDomain.AppleShowAllFiles = true;
-          NSGlobalDomain."com.apple.keyboard.fnState" = true;
-          NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = true;
-        };
         security.pam.enableSudoTouchIdAuth = true;
 
         # Declare the user that will be running `nix-darwin`.
@@ -107,38 +123,43 @@
         };
       };
       homeconfig = { pkgs, ... }: {
-        # this is internal compatibility configuration 
-        # for home-manager, don't change this!
-        home.stateVersion = "23.05";
-        # Let home-manager install and manage itself.
-        programs.home-manager.enable = true;
+        home = {
+          # this is internal compatibility configuration 
+          # for home-manager, don't change this!
+          stateVersion = "23.05";
 
-        home.packages = with pkgs; [ nixpkgs-fmt ];
+          packages = with pkgs; [ nixpkgs-fmt ];
+          sessionVariables = {
+            EDITOR = "subl -w";
+          };
 
-        home.sessionVariables = {
-          EDITOR = "subl -w";
         };
 
-        programs.zsh = {
-          enable = true;
-          shellAliases = {
-            switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
-          };
-          oh-my-zsh = {
+        programs = {
+          # Let home-manager install and manage itself.
+          home-manager.enable = true;
+
+          zsh = {
             enable = true;
-            plugins = [ "git" ];
-            theme = "robbyrussell";
+            shellAliases = {
+              switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+            };
+            oh-my-zsh = {
+              enable = true;
+              plugins = [ "git" ];
+              theme = "robbyrussell";
+            };
           };
-        };
 
-        programs.git = {
-          enable = true;
-          userName = "Eirik Vågeskar";
-          userEmail = "eirik.vaageskar@aboveit.no";
-          ignores = [ ".DS_Store" ];
-          extraConfig = {
-            init.defaultBranch = "main";
-            push.autoSetupRemote = true;
+          git = {
+            enable = true;
+            userName = "Eirik Vågeskar";
+            userEmail = "eirik.vaageskar@aboveit.no";
+            ignores = [ ".DS_Store" ];
+            extraConfig = {
+              init.defaultBranch = "main";
+              push.autoSetupRemote = true;
+            };
           };
         };
       };
