@@ -128,7 +128,7 @@
           # for home-manager, don't change this!
           stateVersion = "23.05";
 
-          packages = with pkgs; [ nixpkgs-fmt delta ];
+          packages = with pkgs; [ nixpkgs-fmt delta difftastic ];
           sessionVariables = {
             EDITOR = "subl -w";
           };
@@ -160,7 +160,7 @@
               init.defaultBranch = "main";
               push.autoSetupRemote = true;
 
-              # Taken from https://github.com/dandavison/delta?tab=readme-ov-file#get-started
+              # Delta, source: https://github.com/dandavison/delta?tab=readme-ov-file#get-started
               core.pager = "delta";
               interactive.diffFilter = "delta --color-only";
               delta = {
@@ -169,6 +169,14 @@
               };
               merge.conflictstyle = "diff3";
               diff.colorMoved = "default";
+
+              # Difftastic, source: https://difftastic.wilfred.me.uk/git.html#regular-usage
+              diff.tool = "difftastic"; # this is from diffTastic
+              difftool = {
+                prompt = false;
+                difftastic.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
+              };
+              pager.difftool = true;
             };
           };
         };
