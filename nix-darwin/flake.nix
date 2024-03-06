@@ -115,6 +115,7 @@
             "signal"
             "1password-cli" # Using pkgs._1password did not work
             "vivaldi"
+            "alfred"
           ];
           onActivation.cleanup = "uninstall";
         };
