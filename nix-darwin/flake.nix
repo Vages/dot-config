@@ -116,6 +116,7 @@
             "1password-cli" # Using pkgs._1password did not work
             "vivaldi"
             "alfred"
+            "webstorm"
           ];
           onActivation.cleanup = "uninstall";
         };
