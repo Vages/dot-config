@@ -134,7 +134,12 @@
           # for home-manager, don't change this!
           stateVersion = "23.05";
 
-          packages = with pkgs; [ nixpkgs-fmt delta difftastic ];
+          packages = with pkgs; [
+            nixpkgs-fmt
+            delta
+            difftastic
+            mdcat # Markdown file formatter
+          ];
           sessionVariables = {
             EDITOR = "subl -w";
           };
