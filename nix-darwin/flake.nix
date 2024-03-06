@@ -117,6 +117,7 @@
             "vivaldi"
             "alfred"
             "webstorm"
+            "microsoft-teams"
           ];
           onActivation.cleanup = "uninstall";
         };
