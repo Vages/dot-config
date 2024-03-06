@@ -77,6 +77,7 @@
 
           defaults = {
             dock = {
+              appswitcher-all-displays = true;
               autohide = true;
               mru-spaces = false;
             };
