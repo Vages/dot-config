@@ -102,6 +102,9 @@
         # Enable Homebrew (requires you to install homebrew, too)
         homebrew = {
           enable = true;
+          brews = [
+            "jenv"
+          ];
           casks = [
             "sublime-text"
             "rectangle"
@@ -162,7 +165,11 @@
             };
             oh-my-zsh = {
               enable = true;
-              plugins = [ "git" "direnv" ];
+              plugins = [
+                "git"
+                "direnv"
+                "jenv"
+              ];
               theme = "robbyrussell";
             };
           };
