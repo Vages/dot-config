@@ -119,6 +119,9 @@
             "webstorm"
             "microsoft-teams"
           ];
+          masApps = {
+            Trello = 1278508951;
+          };
           onActivation.cleanup = "uninstall";
         };
         security.pam.enableSudoTouchIdAuth = true;
