@@ -120,7 +120,6 @@
             "microsoft-teams"
           ];
           masApps = {
-            Trello = 1278508951;
             "1Password for Safari" = 1569813296;
           };
           onActivation.cleanup = "uninstall";
