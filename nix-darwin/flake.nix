@@ -156,6 +156,7 @@
 
           zsh = {
             enable = true;
+            syntaxHighlighting.enable = true;
             shellAliases = {
               switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
             };
