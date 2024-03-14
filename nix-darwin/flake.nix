@@ -118,6 +118,7 @@
             "alfred"
             "webstorm"
             "microsoft-teams"
+            "spotify"
           ];
           masApps = {
             "1Password for Safari" = 1569813296;
