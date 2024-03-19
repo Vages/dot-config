@@ -171,7 +171,7 @@
             };
             oh-my-zsh = {
               enable = true;
-              plugins = [ "git" "direnv" "ssh-agent" ];
+              plugins = [ "git" "direnv" "ssh-agent" "jira"];
               theme = "robbyrussell";
             };
           };
