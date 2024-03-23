@@ -185,6 +185,7 @@
             extraConfig = {
               init.defaultBranch = "main";
               push.autoSetupRemote = true;
+              pull.rebase = true;
               rebase.autoSquash = true;
 
               # Delta, source: https://github.com/dandavison/delta?tab=readme-ov-file#get-started
