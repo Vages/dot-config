@@ -153,6 +153,7 @@
             delta
             difftastic
             mdcat # Markdown file formatter
+            silver-searcher
           ];
           sessionVariables = {
             EDITOR = "subl -w";
