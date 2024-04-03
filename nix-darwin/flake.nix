@@ -22,6 +22,7 @@
           vim
           neovim
           direnv
+          devenv
           tree
           docker
         ];
