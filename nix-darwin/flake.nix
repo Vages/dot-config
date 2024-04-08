@@ -208,6 +208,9 @@
                 difftastic.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
               };
               pager.difftool = true;
+
+              # Necessary to fetch private go modules for tidir projects
+              url."ssh://git@bitbucket.org/".insteadOf = "https://bitbucket.org/";
             };
           };
         };
