@@ -158,6 +158,7 @@
             difftastic
             mdcat # Markdown file formatter
             silver-searcher
+            curlie
           ];
           sessionVariables = {
             EDITOR = "subl -w";
