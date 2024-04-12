@@ -131,6 +131,7 @@
             "vlc"
             "docker"
             "dropbox"
+            "megasync"
           ];
           masApps = {
             "1Password for Safari" = 1569813296;
