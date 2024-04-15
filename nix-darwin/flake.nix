@@ -132,6 +132,7 @@
             "docker"
             "dropbox"
             "megasync"
+            "visual-studio-code"
           ];
           masApps = {
             "1Password for Safari" = 1569813296;
@@ -180,7 +181,13 @@
             };
             oh-my-zsh = {
               enable = true;
-              plugins = [ "git" "direnv" "ssh-agent" "jira"];
+              plugins = [
+                "git"
+                "direnv"
+                "ssh-agent"
+                "jira"
+                "vscode"
+              ];
               theme = "robbyrussell";
             };
           };
