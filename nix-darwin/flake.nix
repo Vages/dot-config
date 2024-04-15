@@ -109,6 +109,10 @@
         # Enable Homebrew (requires you to install homebrew, too)
         homebrew = {
           enable = true;
+          brews = [
+            "mas"
+            "cocoapods"
+          ];
           casks = [
             "sublime-text"
             "rectangle"
