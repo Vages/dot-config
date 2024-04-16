@@ -137,6 +137,11 @@
             "dropbox"
             "megasync"
             "visual-studio-code"
+            # Flutter development/begin
+            "flutter"
+            "android-studio"
+            "google-chrome"
+            # Flutter development/end
           ];
           masApps = {
             "1Password for Safari" = 1569813296;
