@@ -125,6 +125,7 @@
             "microsoft-teams"
             "mullvad-browser"
             "omnifocus"
+            "postman"
             "protonmail-bridge"
             "protonvpn"
             "rectangle"
