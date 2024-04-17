@@ -19,12 +19,12 @@
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [
-          vim
-          neovim
-          direnv
           devenv
-          tree
+          direnv
           docker
+          neovim
+          tree
+          vim
         ];
 
         # Auto upgrade nix package and the daemon service.
@@ -110,8 +110,8 @@
         homebrew = {
           enable = true;
           brews = [
-            "mas"
             "cocoapods"
+            "mas"
           ];
           casks = [
             "1password"
@@ -165,12 +165,12 @@
           stateVersion = "23.05";
 
           packages = with pkgs; [
-            nixpkgs-fmt
+            curlie
             delta
             difftastic
             mdcat # Markdown file formatter
+            nixpkgs-fmt
             silver-searcher
-            curlie
           ];
           sessionVariables = {
             EDITOR = "subl -w";
@@ -191,10 +191,10 @@
             oh-my-zsh = {
               enable = true;
               plugins = [
-                "git"
                 "direnv"
-                "ssh-agent"
+                "git"
                 "jira"
+                "ssh-agent"
                 "vscode"
               ];
               theme = "robbyrussell";
