@@ -111,7 +111,6 @@
           enable = true;
           brews = [
             "cocoapods"
-            "mas"
           ];
           casks = [
             "1password"
