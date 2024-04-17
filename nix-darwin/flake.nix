@@ -164,10 +164,11 @@
           stateVersion = "23.05";
 
           packages = with pkgs; [
+            bat # cat/less, with syntax highligting
+            bat-extras.batman # man, with syntax highligthing
             curlie
             delta
             difftastic
-            mdcat # Markdown file formatter
             nixpkgs-fmt
             silver-searcher
           ];
