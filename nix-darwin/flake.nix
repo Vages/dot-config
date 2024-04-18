@@ -170,6 +170,7 @@
             curlie
             delta
             difftastic
+            jq
             nixpkgs-fmt
             silver-searcher
           ];
