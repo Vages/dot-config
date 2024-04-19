@@ -173,6 +173,8 @@
             jq
             nixpkgs-fmt
             nodePackages.prettier
+            shellcheck
+            shfmt
             silver-searcher
           ];
           sessionVariables = {
