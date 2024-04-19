@@ -172,6 +172,7 @@
             difftastic
             jq
             nixpkgs-fmt
+            nodePackages.prettier
             silver-searcher
           ];
           sessionVariables = {
