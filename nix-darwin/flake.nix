@@ -146,6 +146,7 @@
           masApps = {
             "1Password for Safari" = 1569813296;
             "TextSniper" = 1528890965;
+            "Tripsy" = 1429967544;
             "Xcode" = 497799835;
           };
           onActivation.cleanup = "uninstall";
