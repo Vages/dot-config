@@ -171,6 +171,7 @@
             curlie
             delta
             difftastic
+            go-jira
             jq
             nixpkgs-fmt
             nodePackages.prettier
@@ -199,7 +200,6 @@
               plugins = [
                 "direnv"
                 "git"
-                "jira"
                 "ssh-agent"
                 "vscode"
               ];
