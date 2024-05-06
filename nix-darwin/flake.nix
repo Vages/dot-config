@@ -195,6 +195,9 @@
             shellAliases = {
               switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
             };
+            initExtra = ''
+              eval "$(jira --completion-script-zsh)" # go-jira tab completion script: https://github.com/go-jira/jira?tab=readme-ov-file#setting-up-tab-completion
+            '';
             oh-my-zsh = {
               enable = true;
               plugins = [
