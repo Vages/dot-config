@@ -172,6 +172,7 @@
             curlie
             delta
             difftastic
+            git-filter-repo
             go-jira
             jq
             nixpkgs-fmt
