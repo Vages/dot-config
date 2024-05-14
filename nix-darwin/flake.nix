@@ -124,6 +124,7 @@
             "megasync"
             "microsoft-teams"
             "mullvad-browser"
+            "obsidian"
             "omnifocus"
             "postman"
             "protonmail-bridge"
