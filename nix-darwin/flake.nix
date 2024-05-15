@@ -229,7 +229,7 @@
               rebase.autoSquash = true;
 
               # Delta, source: https://github.com/dandavison/delta?tab=readme-ov-file#get-started
-              core.pager = "delta";
+              core.pager = "delta --tabs 2";
               interactive.diffFilter = "delta --color-only";
               delta = {
                 navigate = true; # use n and N to move between diff sections
