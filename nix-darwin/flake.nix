@@ -130,6 +130,7 @@
             "protonmail-bridge"
             "protonvpn"
             "rectangle"
+            "rocket"
             "signal"
             "slack"
             "spotify"
