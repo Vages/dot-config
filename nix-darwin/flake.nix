@@ -247,6 +247,8 @@
               };
               pager.difftool = true;
 
+              alias.dshow = "-c diff.external=difft show -p --ext-diff";
+
               # Necessary to fetch private go modules for tidir projects
               url."ssh://git@bitbucket.org/".insteadOf = "https://bitbucket.org/";
             };
