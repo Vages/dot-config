@@ -179,6 +179,7 @@
             jq
             nixpkgs-fmt
             nodePackages.prettier
+            nodejs_22
             shellcheck
             shfmt
             silver-searcher
