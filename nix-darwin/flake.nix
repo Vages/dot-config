@@ -116,6 +116,7 @@
             "1password"
             "1password-cli" # Using pkgs._1password did not work
             "alfred"
+            "caffeine"
             "docker"
             "dropbox"
             "firefox"
