@@ -255,6 +255,10 @@
               # Necessary to fetch private go modules for tidir projects
               url."ssh://git@bitbucket.org/".insteadOf = "https://bitbucket.org/";
             };
+            includes = [{
+              condition = "gitdir:~/zaveit/";
+              path = "~/zaveit/.gitconfig";
+            }];
           };
         };
       };
