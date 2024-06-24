@@ -79,6 +79,8 @@
                 # https://developer.apple.com/library/archive/technotes/tn2450/_index.html#//apple_ref/doc/uid/DTS40017618-CH1-KEY_TABLE_USAGES
                 caps_lock_key = base + 3 * 16 + 9;
                 backspace_key = base + 2 * 16 + 10;
+                application_key = base + 6 * 16 + 5; # The key between Alt Gr and Ctrl on my Microsoft Ergonomic Keyboard.
+                right_alt_key = base + 14 * 16 + 6;
               in
               [
                 {
@@ -88,6 +90,10 @@
                 {
                   HIDKeyboardModifierMappingSrc = backspace_key;
                   HIDKeyboardModifierMappingDst = caps_lock_key;
+                }
+                {
+                  HIDKeyboardModifierMappingSrc = application_key;
+                  HIDKeyboardModifierMappingDst = right_alt_key;
                 }
               ];
           };
