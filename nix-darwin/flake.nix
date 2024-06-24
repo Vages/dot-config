@@ -68,18 +68,28 @@
 
           keyboard = {
             enableKeyMapping = true;
-            userKeyMapping = [
-              # Caps lock to backspace; keys taken from https://github.com/rossmacarthur/kb-remap/blob/8ad996a86f419a474d7d17e5bc56e55c207bf9dd/README.md#filtering-keyboards
-              {
-                HIDKeyboardModifierMappingSrc = 30064771129;
-                HIDKeyboardModifierMappingDst = 30064771114;
-              }
-              # Backspace to caps lock
-              {
-                HIDKeyboardModifierMappingSrc = 30064771114;
-                HIDKeyboardModifierMappingDst = 30064771129;
-              }
-            ];
+            userKeyMapping =
+              let
+                # Keyboard key "base", 0x700000000, in decimal: 
+                # https://developer.apple.com/library/archive/technotes/tn2450/_index.html#//apple_ref/doc/uid/DTS40017618-CH1-TNTAG8
+                # Nix does not yet have hexadecimal number support,
+                # see https://github.com/NixOS/nix/issues/7578)
+                base = 30064771072;
+                # Keys are calculated as the base + the key value from this table:
+                # https://developer.apple.com/library/archive/technotes/tn2450/_index.html#//apple_ref/doc/uid/DTS40017618-CH1-KEY_TABLE_USAGES
+                caps_lock_key = base + 3 * 16 + 9;
+                backspace_key = base + 2 * 16 + 10;
+              in
+              [
+                {
+                  HIDKeyboardModifierMappingSrc = caps_lock_key;
+                  HIDKeyboardModifierMappingDst = backspace_key;
+                }
+                {
+                  HIDKeyboardModifierMappingSrc = backspace_key;
+                  HIDKeyboardModifierMappingDst = caps_lock_key;
+                }
+              ];
           };
 
           defaults = {
