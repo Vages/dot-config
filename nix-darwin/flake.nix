@@ -194,6 +194,7 @@
             git-filter-repo
             go-jira
             jq
+            lynx
             nixpkgs-fmt
             nodePackages.prettier
             nodejs_22
