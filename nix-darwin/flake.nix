@@ -138,6 +138,7 @@
             "firefox"
             "flux"
             "goland"
+            "intellij-idea"
             "megasync"
             "microsoft-teams"
             "mullvad-browser"
