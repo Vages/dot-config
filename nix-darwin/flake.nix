@@ -193,6 +193,7 @@
             difftastic
             git-filter-repo
             go-jira
+            httpie
             jq
             lynx
             nixpkgs-fmt
