@@ -192,6 +192,7 @@
             curlie
             delta
             difftastic
+            fd
             git-filter-repo
             go-jira
             httpie
