@@ -279,7 +279,11 @@
             includes = [{
               condition = "gitdir:~/zaveit/";
               path = "~/zaveit/.gitconfig";
-            }];
+            }
+              {
+                condition = "gitdir:~/private-git/";
+                path = "~/private-git/.gitconfig";
+              }];
           };
         };
       };
