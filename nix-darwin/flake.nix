@@ -145,6 +145,7 @@
             "obsidian"
             "omnifocus"
             "postman"
+            "pika"
             "protonmail-bridge"
             "protonvpn"
             "rectangle"
