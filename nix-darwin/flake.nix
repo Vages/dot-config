@@ -141,6 +141,7 @@
             "intellij-idea"
             "megasync"
             "microsoft-teams"
+            "microsoft-word"
             "mullvad-browser"
             "obsidian"
             "omnifocus"
