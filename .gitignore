@@ -1,7 +1,7 @@
-# Generated from Nix configuration
-git/ 
-gcloud/
-flutter
+# Opt out of all folders
+**/
+# Opt in to the following folders
+!nix-darwin/
 
 # Devenv
 .devenv*
